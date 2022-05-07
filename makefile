@@ -11,10 +11,10 @@ build_tools:
 	make -f $(TOOL_PATH)makefile
 
 compile:
-	$(JC) $(JFLAGS) $(PACKAGE_PATH)*.java
+	javac $(JFLAGS) $(PACKAGE_PATH)*.java
 
 run:
-	$(JAVA) $(CLASSPATH) com.craftinginterpreters.lox.Lox
+	java $(CLASSPATH) com.craftinginterpreters.lox.Lox
 
 clean:
 	rm -rf classes
