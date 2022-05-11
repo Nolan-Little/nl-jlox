@@ -2,8 +2,6 @@ PACKAGE_PATH = com/craftinginterpreters/lox/
 TOOL_PATH = com/craftinginterpreters/tool/
 CLASSPATH = -classpath classes
 JFLAGS = -d classes
-JC = javac
-JAVA = java
 
 default: build_tools compile run
 
@@ -15,6 +13,12 @@ compile:
 
 run:
 	java $(CLASSPATH) com.craftinginterpreters.lox.Lox
+
+run_debug:
+	java $(CLASSPATH) -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n com.craftinginterpreters.lox.Lox
+
+debug:
+	jdb -attach 8000
 
 clean:
 	rm -rf classes
