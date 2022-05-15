@@ -105,6 +105,12 @@ class Interpreter implements Expr.Visitor<Object> {
         if (left instanceof String && right instanceof String) {
           return (String)left + (String)right;
         }
+        if (left instanceof String) {
+          return (String)left + stripDoubleSuffix(right);
+        }
+        if (right instanceof String) {
+          return stripDoubleSuffix(left) + (String)right;
+        }
         throw new RuntimeError(expr.operator, "Operands must be two numbers or two strings.");
       case SLASH:
         checkNumberOperands(expr.operator, left, right);
@@ -118,6 +124,14 @@ class Interpreter implements Expr.Visitor<Object> {
 
     // Unreachable.
     return null;
+  }
+
+  private String stripDoubleSuffix(Object operand) {
+    String string = operand.toString();
+    if (string.endsWith(".0")) {
+      string = string.substring(0, string.length() - 2);
+    }
+    return string;
   }
 
 }
