@@ -14,6 +14,9 @@ compile:
 run:
 	java $(CLASSPATH) com.craftinginterpreters.lox.Lox
 
+run_file:
+	java $(CLASSPATH) com.craftinginterpreters.lox.Lox $(FILE)
+	
 run_debug:
 	java $(CLASSPATH) -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n com.craftinginterpreters.lox.Lox
 
